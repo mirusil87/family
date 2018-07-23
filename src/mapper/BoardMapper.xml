@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/BoardMapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BoardMapper">
+	<select id="boardCount" resultType="int" parameterType="map">
+	select count(*) from board 
+	<if test="family_num != null">
+		where family_num = #{family_num}
+	</if>
+	<if test="column != null and find != null">
+		and ${column} like '%${find}%'
+	</if>
+	</select>
+	
+	<select id="select" resultType="Board" parameterType="map">
+	select * from board
+	<trim prefix="where" prefixOverrides="AND | OR">
+	<if test="family_num != null">
+		and family_num = #{family_num}
+	</if>
+	<if test="num != null">
+		and num = #{num}
+	</if>
+	</trim>
+	<if test="column != null and find != null">
+		and ${column} like '%${find}%'
+	</if>
+	order by ref desc, refstep asc
+	<if test="startrow != null and limit != null">
+		limit #{startrow},#{limit}
+	</if>
+	</select>
+</mapper>
+		

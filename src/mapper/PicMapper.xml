@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- /src/mapper/BoardMapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.PicMapper">
+	<select id="select" resultType="Pic" parameterType="map">
+			select * from family
+		<if test="familynum != null">
+			where familynum = #{familynum}
+		</if>
+	</select>
+</mapper>

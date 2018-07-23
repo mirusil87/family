@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<!-- /WenContent/WEB-INF/decorators.xml -->
+<decorators defaultdir="/decorator">
+  <decorator name="start" page="decoraotr1.jsp">
+     <pattern>/model2/member/start.jsp</pattern>
+  </decorator>
+  <decorator name="main" 
+    page="decorator.jsp">
+     <pattern>/model2/member/*</pattern>
+     <pattern>/model2/board/*</pattern>
+     <pattern>/model2/private/*</pattern>
+     <pattern>/model2/calendar/*</pattern>
+  </decorator>
+  <!-- layout 설정을 제외 함. -->
+  <excludes>
+    <pattern>/model2/calendar/update*</pattern>
+  </excludes>
+</decorators>

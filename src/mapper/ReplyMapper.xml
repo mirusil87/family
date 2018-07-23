@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ReplyMapper">
+     <select id="boardCount" resultType="int" parameterType="map">
+           select count(*) from board
+           <if test="column != null and find != null">
+           where ${column} like '%${find}'
+           </if>
+     </select>
+     <select id="select" resultType="Reply" parameterType="map">
+     	select * from reply
+     	<if test="bnum != null">
+     	where bnum = #{bnum} order by regdate desc
+     	</if>
+     </select>
+     <select id="select3" resultType="Reply" parameterType="map">
+     	select * from reply
+     	<if test="bnum != null">
+     	where bnum = #{bnum}
+     	</if>
+     	<if test="renum != null">
+     	and renum = #{renum}
+     	</if>
+     </select>
+</mapper>
